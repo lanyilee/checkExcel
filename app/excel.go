@@ -380,8 +380,8 @@ func WriteHead(f *excelize.File, cities []model.ProvinceCity, sheetName string) 
 	f.MergeCell(sheetName, "C3", "C5")
 	f.SetCellStr(sheetName, "D3", "省市")
 	f.MergeCell(sheetName, "D3", getColNumber(cityLen, asciiC, 0, 4))
-	//
-	//推送数
+
+	//第三行推送数
 	f.SetCellStr(sheetName, getColNumber(cityLen, asciiC, 1, 3), "推送数")
 	f.MergeCell(sheetName, getColNumber(cityLen, asciiC, 1, 3), getColNumber(cityLen, asciiC, 1, 5))
 	//已排查
@@ -586,7 +586,7 @@ func WriteBodyRight(f *excelize.File, f1SheetName string, path string, cities []
 	return nil
 }
 
-// ReadBigDataExcel 读取大数据excel表数据
+// ReadBigDataExcel 读取大数据excel表数据，注意行数和输出的行数不一样
 func ReadBigDataExcel(path string) (*model.BigData, error) {
 	// 先读大数据表数据
 	f2, err := excelize.OpenFile(path)
@@ -607,10 +607,10 @@ func ReadBigDataExcel(path string) (*model.BigData, error) {
 	bigData := &model.BigData{}
 	bigData.EnterpriseMap = map[string]model.EnterpriseArray{}
 	for rowIndex, row := range f2rows {
-		if rowIndex < 5 {
+		if rowIndex < 6 {
 			continue
 		}
-		if rowIndex == 5 {
+		if rowIndex == 6 {
 			for colIndex, colCell := range row {
 				//推送数
 				if colIndex == 2 {
@@ -691,8 +691,10 @@ func ReadBigDataExcel(path string) (*model.BigData, error) {
 				} else if colIndex >= 3 && colIndex <= 7 {
 					if colCell != "" {
 						ea.Arr[colIndex-3], err = strconv.Atoi(colCell)
-						log.Println(err)
-						println(err)
+						if err != nil {
+							log.Println(err)
+							println(err)
+						}
 					} else {
 						ea.Arr[colIndex-3] = 0
 					}
