@@ -177,8 +177,25 @@ func CountUnit(curUnit model.Unit) {
 	if firstPercent > 0.4 || secondPercent > 0.4 || thirdPercent > 0.4 || fourthPercent > 0.4 {
 		curUnit.IfPrint = true
 	}
-	if curUnit.IfPrint {
+	//
+	if firstPercent > 0.4 {
 		println(curUnit.UnitName + " 超过40%；")
-		log.Println(curUnit.UnitName + " 超过40%；")
+		log.Println(curUnit.UnitName + " 一季度超过40%；")
 	}
+	if secondPercent > 0.4 {
+		println(curUnit.UnitName + " 超过40%；")
+		log.Println(curUnit.UnitName + " 二季度超过40%；")
+	}
+	if thirdPercent > 0.4 {
+		println(curUnit.UnitName + " 超过40%；")
+		log.Println(curUnit.UnitName + " 三季度超过40%；")
+	}
+	if fourthPercent > 0.4 {
+		println(curUnit.UnitName + " 超过40%；")
+		log.Println(curUnit.UnitName + " 四季度超过40%；")
+	}
+	//if curUnit.IfPrint {
+	//	println(curUnit.UnitName + " 超过40%；")
+	//	log.Println(curUnit.UnitName + " 超过40%；")
+	//}
 }

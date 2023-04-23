@@ -336,9 +336,7 @@ func TestWriteExcel() {
 
 // WriteExcel 输出excel表格
 func WriteExcel(cities []model.ProvinceCity, path string) {
-
 	f := excelize.NewFile()
-
 	sheetName := "Sheet1"
 	WriteHead(f, cities, sheetName)
 	villageNames := WriteBodyLeft(f, cities, sheetName)

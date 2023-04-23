@@ -34,16 +34,7 @@ func main() {
 	//app.NewCanvas()
 	//app.MainShow()
 
-	//app.NewExcelEntry()
-	//err := os.Unsetenv("FYNE_FONT")
-	//if err != nil {
-	//	return
-	//}
-
-	//value, _ := strconv.ParseFloat(fmt.Sprintf("%.2f", 3.0/6.0), 64)
-	//fmt.Println(reflect.TypeOf(value), value)
-
-	app.NewTestEntry()
+	app.NewTransferEntry()
 
 }
 
