@@ -34,7 +34,7 @@ func main() {
 	//app.NewCanvas()
 	//app.MainShow()
 
-	app.NewTransferEntry()
+	app.NewCompareEntry()
 
 }
 

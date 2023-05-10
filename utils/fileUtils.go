@@ -6,6 +6,7 @@ import (
 	"io/fs"
 	"io/ioutil"
 	"log"
+	"os"
 	"strconv"
 	"strings"
 )
@@ -19,7 +20,7 @@ func FileForEach(fileFullPath string) ([]fs.FileInfo, error) {
 	}
 	var myFile []fs.FileInfo
 	for _, file := range files {
-		fmt.Println(file.Name())
+		//fmt.Println(file.Name())
 		if file.IsDir() {
 			continue
 		}
@@ -92,4 +93,19 @@ func ReadWordTable() {
 			}
 		}
 	}
+}
+
+// WriteText 写入txt文件
+func WriteText(path string, text string) error {
+	file, err := os.OpenFile(path, os.O_CREATE|os.O_APPEND|os.O_WRONLY, 0666)
+	if err != nil {
+		fmt.Println(err)
+		return err
+	}
+	defer file.Close()
+	_, err = file.WriteString(text)
+	if err != nil {
+		return err
+	}
+	return nil
 }
